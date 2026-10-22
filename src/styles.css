@@ -1,0 +1,344 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * NextGen AI Proctoring — design system
+ * Deep space navy + electric cyan / violet accents, glassmorphism surfaces.
+ * All colors are oklch semantic tokens. Never hardcode colors in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-glass: var(--glass);
+  --color-glass-border: var(--glass-border);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 1rem;
+  --background: oklch(0.98 0.006 250);
+  --foreground: oklch(0.19 0.03 262);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.19 0.03 262);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.19 0.03 262);
+  --primary: oklch(0.62 0.15 220);
+  --primary-foreground: oklch(0.99 0.005 250);
+  --secondary: oklch(0.95 0.012 250);
+  --secondary-foreground: oklch(0.25 0.03 262);
+  --muted: oklch(0.95 0.01 250);
+  --muted-foreground: oklch(0.52 0.025 258);
+  --accent: oklch(0.6 0.19 295);
+  --accent-foreground: oklch(0.99 0.005 250);
+  --destructive: oklch(0.58 0.22 22);
+  --destructive-foreground: oklch(0.99 0.005 250);
+  --success: oklch(0.65 0.16 155);
+  --success-foreground: oklch(0.16 0.03 262);
+  --warning: oklch(0.78 0.16 78);
+  --warning-foreground: oklch(0.19 0.03 262);
+  --border: oklch(0.9 0.012 250);
+  --input: oklch(0.9 0.012 250);
+  --ring: oklch(0.62 0.15 220);
+  --glass: oklch(1 0 0 / 65%);
+  --glass-border: oklch(0.6 0.05 250 / 18%);
+  --chart-1: oklch(0.62 0.15 220);
+  --chart-2: oklch(0.6 0.19 295);
+  --chart-3: oklch(0.65 0.16 155);
+  --chart-4: oklch(0.78 0.16 78);
+  --chart-5: oklch(0.58 0.22 22);
+  --sidebar: oklch(0.99 0.005 250);
+  --sidebar-foreground: oklch(0.19 0.03 262);
+  --sidebar-primary: oklch(0.62 0.15 220);
+  --sidebar-primary-foreground: oklch(0.99 0.005 250);
+  --sidebar-accent: oklch(0.95 0.012 250);
+  --sidebar-accent-foreground: oklch(0.25 0.03 262);
+  --sidebar-border: oklch(0.9 0.012 250);
+  --sidebar-ring: oklch(0.62 0.15 220);
+  --gradient-hero:
+    radial-gradient(
+      120% 90% at 15% 0%,
+      color-mix(in oklab, var(--primary) 22%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      100% 80% at 90% 10%,
+      color-mix(in oklab, var(--accent) 20%, transparent),
+      transparent 55%
+    );
+  --gradient-brand: linear-gradient(120deg, var(--primary), var(--accent));
+  --shadow-glass: 0 24px 60px -28px color-mix(in oklab, var(--primary) 45%, transparent);
+}
+
+.dark {
+  --background: oklch(0.16 0.028 264);
+  --foreground: oklch(0.96 0.008 250);
+  --card: oklch(0.21 0.03 264);
+  --card-foreground: oklch(0.96 0.008 250);
+  --popover: oklch(0.21 0.03 264);
+  --popover-foreground: oklch(0.96 0.008 250);
+  --primary: oklch(0.76 0.14 205);
+  --primary-foreground: oklch(0.16 0.03 264);
+  --secondary: oklch(0.26 0.032 264);
+  --secondary-foreground: oklch(0.96 0.008 250);
+  --muted: oklch(0.26 0.032 264);
+  --muted-foreground: oklch(0.72 0.025 256);
+  --accent: oklch(0.7 0.17 300);
+  --accent-foreground: oklch(0.16 0.03 264);
+  --destructive: oklch(0.66 0.21 20);
+  --destructive-foreground: oklch(0.15 0.03 264);
+  --success: oklch(0.74 0.17 158);
+  --success-foreground: oklch(0.15 0.03 264);
+  --warning: oklch(0.83 0.16 80);
+  --warning-foreground: oklch(0.15 0.03 264);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: oklch(0.76 0.14 205);
+  --glass: oklch(0.26 0.035 264 / 55%);
+  --glass-border: oklch(1 0 0 / 12%);
+  --chart-1: oklch(0.76 0.14 205);
+  --chart-2: oklch(0.7 0.17 300);
+  --chart-3: oklch(0.74 0.17 158);
+  --chart-4: oklch(0.83 0.16 80);
+  --chart-5: oklch(0.66 0.21 20);
+  --sidebar: oklch(0.19 0.03 264);
+  --sidebar-foreground: oklch(0.96 0.008 250);
+  --sidebar-primary: oklch(0.76 0.14 205);
+  --sidebar-primary-foreground: oklch(0.16 0.03 264);
+  --sidebar-accent: oklch(0.26 0.032 264);
+  --sidebar-accent-foreground: oklch(0.96 0.008 250);
+  --sidebar-border: oklch(1 0 0 / 12%);
+  --sidebar-ring: oklch(0.76 0.14 205);
+  --shadow-glass: 0 30px 70px -30px oklch(0 0 0 / 65%);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+/* ---------- Utilities ---------- */
+
+@utility glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(22px) saturate(140%);
+  box-shadow: var(--shadow-glass);
+}
+
+@utility aurora {
+  background-image: var(--gradient-hero);
+}
+
+@utility brand-text {
+  background-image: var(--gradient-brand);
+  background-clip: text;
+  color: transparent;
+}
+
+@utility brand-surface {
+  background-image: var(--gradient-brand);
+  color: var(--primary-foreground);
+}
+
+@utility grid-lines {
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--foreground) 6%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 44px 44px;
+}
+
+@utility scan-line {
+  &::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    animation: scanmove 2.6s linear infinite;
+  }
+}
+
+@keyframes scanmove {
+  0% {
+    top: 0%;
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0.2;
+  }
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@utility float-slow {
+  animation: floaty 7s ease-in-out infinite;
+}
+
+@keyframes pulseglow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--primary) 45%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 12px transparent;
+  }
+}
+
+@utility pulse-glow {
+  animation: pulseglow 2s ease-out infinite;
+}
+
+/* =========================================================================
+ * Exam Security Shield: Anti-Cheating, Selection Lock & AI Extension Neutralizer
+ * ========================================================================= */
+
+.exam-secure-environment {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+
+.exam-secure-environment * {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+
+/* Allow text editing inside the solution code editor */
+.exam-secure-environment textarea.exam-code-editor,
+.exam-secure-environment .exam-code-editor {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+}
+
+/* CSS Suppression of Injected AI Browser Extension Widgets & Overlays */
+#monica-content-root,
+monica-root,
+div[id^="monica-"],
+div[class*="monica-"],
+[data-monica],
+#sider-sidebar,
+#sider-root,
+sider-market,
+div[id^="ch-plugin-"],
+div[class*="sider-"],
+[data-sider],
+#merlin-chat-container,
+div[data-merlin-container],
+merlin-component,
+div[id*="chatgpt-sidebar"],
+chatgpt-sidebar,
+div[class*="chatgpt-sidebar"],
+div[id*="openai-assistant"],
+maxai-root,
+#maxai-root,
+div[id*="maxai"],
+harpa-assistant,
+div[id*="harpa-"],
+quillbot-extension,
+div[id*="quillbot"],
+grammarly-extension,
+grammarly-popups,
+grammarly-desktop-integration,
+div[class*="ai-assistant"],
+div[class*="selection-popup"],
+div[class*="ai-quick-query"],
+[data-extension-id],
+iframe[src*="chrome-extension://"],
+iframe[src*="moz-extension://"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  position: absolute !important;
+  z-index: -99999 !important;
+  transform: scale(0) !important;
+}
+

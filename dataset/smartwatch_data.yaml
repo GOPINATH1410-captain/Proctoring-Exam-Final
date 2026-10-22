@@ -1,0 +1,7 @@
+path: C:\Users\GOPINATH\OneDrive\Desktop\Final Year Project copy\dataset
+train: images/train
+val: images/val
+nc: 2
+names:
+- cell phone
+- smartwatch
