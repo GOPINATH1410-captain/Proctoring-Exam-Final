@@ -388,9 +388,11 @@ export function printPDF(session: ExamSession) {
  */
 export async function downloadSessionPDF(session: ExamSession) {
   try {
-    const backendUrl = typeof window !== "undefined" && window.location.hostname === "localhost"
-      ? "http://localhost:8000"
-      : "";
+    const backendUrl =
+      (import.meta as any).env?.VITE_BACKEND_URL?.replace(/\/$/, "") ||
+      (typeof window !== "undefined" && window.location.hostname === "localhost"
+        ? "http://localhost:8000"
+        : "");
 
     // Send latest session payload to backend to ensure all movement counts & evidence are included
     let res = await fetch(`${backendUrl}/api/v1/reports/pdf`, {

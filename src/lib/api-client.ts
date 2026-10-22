@@ -8,8 +8,36 @@
 
 import type { ProctorEvent, FacultyReview } from "./types/proctor";
 
-const BACKEND_URL = "http://localhost:8000";
-const WS_URL = "ws://localhost:8000";
+function resolveBackendUrl(): string {
+  if (typeof window !== "undefined" && (window as any).__BACKEND_URL__) {
+    return (window as any).__BACKEND_URL__;
+  }
+  const envUrl = (import.meta as any).env?.VITE_BACKEND_URL;
+  if (envUrl) {
+    return envUrl.replace(/\/$/, "");
+  }
+  return "http://localhost:8000";
+}
+
+function resolveWsUrl(): string {
+  if (typeof window !== "undefined" && (window as any).__WS_URL__) {
+    return (window as any).__WS_URL__;
+  }
+  const envWs = (import.meta as any).env?.VITE_WS_URL;
+  if (envWs) {
+    return envWs.replace(/\/$/, "");
+  }
+  const backend = resolveBackendUrl();
+  if (backend.startsWith("https://")) {
+    return backend.replace(/^https:\/\//, "wss://");
+  } else if (backend.startsWith("http://")) {
+    return backend.replace(/^http:\/\//, "ws://");
+  }
+  return "ws://localhost:8000";
+}
+
+const BACKEND_URL = resolveBackendUrl();
+const WS_URL = resolveWsUrl();
 
 class ProctorApiClient {
   private offlineEventQueue: ProctorEvent[] = [];
@@ -20,8 +48,16 @@ class ProctorApiClient {
     }
   }
 
+  public getBackendUrl(): string {
+    return resolveBackendUrl();
+  }
+
+  public getWsUrl(): string {
+    return resolveWsUrl();
+  }
+
   private async fetchJson<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
-    const url = `${BACKEND_URL}${endpoint}`;
+    const url = `${resolveBackendUrl()}${endpoint}`;
     try {
       const res = await fetch(url, {
         ...options,
@@ -306,21 +342,21 @@ class ProctorApiClient {
   // ===================== Report Download URLs =====================
 
   getPdfReportUrl(sessionId: string) {
-    return `${BACKEND_URL}/api/v1/reports/pdf/${sessionId}`;
+    return `${resolveBackendUrl()}/api/v1/reports/pdf/${sessionId}`;
   }
 
   getCsvReportUrl(sessionId: string) {
-    return `${BACKEND_URL}/api/v1/reports/csv/${sessionId}`;
+    return `${resolveBackendUrl()}/api/v1/reports/csv/${sessionId}`;
   }
 
   // ===================== WebSocket URLs =====================
 
   getProctorWsUrl() {
-    return `${WS_URL}/api/v1/ws/proctor`;
+    return `${resolveWsUrl()}/api/v1/ws/proctor`;
   }
 
   getFacultyWsUrl() {
-    return `${WS_URL}/api/v1/ws/faculty`;
+    return `${resolveWsUrl()}/api/v1/ws/faculty`;
   }
 }
 
