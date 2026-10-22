@@ -11,7 +11,6 @@ pydantic>=2.6.0
 
 # 2. Computer Vision & Object Detection
 ultralytics>=8.1.0
-opencv-python>=4.9.0
 opencv-python-headless>=4.9.0
 mediapipe>=0.10.11
 numpy>=1.26.0
